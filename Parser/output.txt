@@ -1,0 +1,13 @@
+Vertex 3.2 2.01 (-32.0) 0.0
+Vertex 0.0 298.2 3.209 66.0
+Vertex 3928.1231 (-129832.0) 9832.1 0.0
+TC 0.555 0.0 0.555
+TC 1.555 0.0 0.0
+TC 2.555 0.0 2.555
+VNormal 0.707 0.0 0.707
+VNormal 1.707 0.0 1.707
+VNormal 2.707 0.0 2.707
+Face (FaceElement (Just 1.0) (Just 1.0) (Just 1.0)) (FaceElement (Just 2.0) (Just 2.0) (Just 2.0)) (FaceElement (Just 3.0) (Just 3.0) (Just 3.0))
+Face (FaceElement (Just 3.0) Nothing (Just 3.0)) (FaceElement (Just 2.0) Nothing (Just 2.0)) (FaceElement (Just 1.0) Nothing (Just 1.0))
+Face (FaceElement (Just 2.0) Nothing Nothing) (FaceElement (Just 1.0) Nothing Nothing) (FaceElement (Just 3.0) Nothing Nothing)
+Face (FaceElement (Just (-2.0)) Nothing (Just (-2.0))) (FaceElement (Just (-1.0)) Nothing (Just (-1.0))) (FaceElement (Just (-3.0)) Nothing (Just (-3.0)))
