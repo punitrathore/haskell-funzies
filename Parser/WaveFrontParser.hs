@@ -1,7 +1,3 @@
-{- CIS 194 HW 11
-   due Monday, 8 April
--}
-
 module WaveFrontParser where
 
 import AParser
