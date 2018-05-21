@@ -27,8 +27,8 @@ digit = satisfy isDigit
 parsePosIntegerStr = oneOrMore digit
 parseAnyIntegerStr = parsePosIntegerStr <|> (:) <$> char '-' <*> parsePosIntegerStr
 
-parsePosDoubleStr = (mappend <$> (mappend <$> (oneOrMore digit) <*> charStr '.')
-                      <*> (oneOrMore digit))
+parsePosDoubleStr = (mappend <$> (mappend <$> parsePosIntegerStr <*> charStr '.')
+                      <*> parsePosIntegerStr)
                     <|> parsePosIntegerStr
 
 parseAnyDouble = rd <$> (parsePosDoubleStr <|>
