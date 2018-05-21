@@ -20,6 +20,13 @@ oneOrMore p = (:) <$> p <*> (zeroOrMore p)
 rd = read :: String -> Double
 digit = satisfy isDigit
 
+------------------------------------------------------------
+--  2. Utilities
+------------------------------------------------------------
+
+spaces :: Parser String
+spaces = zeroOrMore (satisfy isSpace)
+
 parsePosIntegerStr = oneOrMore digit
 parseAnyIntegerStr = parsePosIntegerStr <|> (:) <$> char '-' <*> parsePosIntegerStr
 
@@ -30,15 +37,13 @@ parsePosDoubleStr = (mappend <$> (mappend <$> parsePosIntegerStr <*> charStr '.'
 parseAnyDouble = rd <$> (parsePosDoubleStr <|>
                          ((:) <$> char '-' <*> parsePosDoubleStr))
 
-------------------------------------------------------------
---  2. Utilities
-------------------------------------------------------------
+opt = pure Nothing
 
-spaces :: Parser String
-spaces = zeroOrMore (satisfy isSpace)
+optionalDouble = (parseAnyDouble <|> pure 0.0 )
 
-ident :: Parser String
-ident = (:) <$> (satisfy isAlpha) <*> zeroOrMore ((satisfy isAlphaNum))
+maybeDouble = (parseAnyDouble >>= (\a -> return (Just a)))
+              <|> opt
+
 
 ------------------------------------------------------------
 --  3. Parsing Wavefront OBJ files
@@ -50,13 +55,6 @@ data Element = Vertex Double Double Double Double
              | TC Double Double Double
              | VNormal Double Double Double
              | Face FaceElement FaceElement FaceElement deriving (Show, Read)
-
-opt = pure Nothing
-
-optionalDouble = (parseAnyDouble <|> pure 0.0 )
-
-maybeDouble = (parseAnyDouble >>= (\a -> return (Just a)))
-              <|> pure (Nothing)
 
 parseVertex = Vertex <$> optionalDouble <* spaces
               <*> optionalDouble <* spaces
